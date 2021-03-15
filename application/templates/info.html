@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5">
+    <div class="col-md-6 well">
+        <h3 class="text-primary">Retrieved Data - {{ site }} </h3>
+        <hr style="border-top:1px dotted #000;"/>
+    </div>
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">UserID</th>
+            <th scope="col">Site</th>
+            <th scope="col">Certificates</th>
+            <th scope="col">Year of Completion</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for i in info %}
+                {% if i.siteID|lower == site|lower %}
+                    <tr> 
+                        <th scope="row">{{ i.name }}</th>
+                        <td>{{ i.empID }}</td>
+                        <td>{{ i.siteID }}</td>
+                        <td>{{ i.certificates }}</td>
+                        <td>{{ i.yearOfCompletion }}</td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock content %}

@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+<div>
+    <!-- Masthead-->                                                                    
+    <section>
+        <div class="container align-items-center">
+            <div class="mx-auto text-center">
+                <img class="logosize imgsize img-fluid" src="/static/assets/img/aws.png">
+                <h1 class="mx-auto text-uppercase heading">Certificate Tracker</h1>
+                <h2 class="text-black-50 mx-auto mt-2">Helps to create, manage and track your Employees' certificates</h2>
+                <section class="contact-section">
+                    <div class="container "> 
+                        <div class="row">
+                            {% for i in site %}
+                            <div class="col-md-4 mb-3 mt-1">
+                                <div class="card py-2 h-100 shadow-lg p-3 mb-1 bg-white rounded" >
+                                    <div class="card-body text-center">
+                                        <img class="card-img-top" src="{{i.image.url}}" alt="Card image cap" style="width: 80%; height: 200px">
+                                        <h4 class="text-uppercase m-3">{{i.siteName}}</h4>
+                                        <hr class="my-2" />
+                                        <div class="small text-black-50 m-3">Demo App , Some description.</div>
+                                        <form action="/info/" method="post" id="submitForm" target="_blank">
+                                            {% csrf_token %}
+                                            <button type="submit" name="siteName" value={{ i.siteName }} form="submitForm" class="btn btn-primary mt-2">{{i.siteName}}</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </section>
+    <!-- Footer--> 
+    <footer class="small text-center text-black-50" style="padding: 3rem 0;">
+        <div class="container">Copyright © AWS 2021</div>
+    </footer>
+</div>
+{% endblock content %}
+
